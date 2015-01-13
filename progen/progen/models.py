@@ -6,8 +6,12 @@ class userdetails(models.Model):
     username = models.CharField(max_length = 8)
     summary = models.CharField(max_length = 1000)
     email = models.EmailField(max_length = 200)
-    skills = models.ListField(max_length = 1000)
-    projects = models.TextField(max_length = False)
+    skills = models.CharField(max_length=2000)
+    def setfoo(self, x):
+        self.skills = json.dumps(x)
+
+    def getfoo(self, x):
+        return json.loads(self.skills)
 # class Author(models.Model):
 #     first_name = models.CharField(max_length=30)
 #     last_name = models.CharField(max_length=40)
