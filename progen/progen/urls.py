@@ -16,12 +16,18 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     url(r'^$', 'progen.views.home', name='home'),
     url(r'login', 'progen.views.login', name='login'),
     url(r'register', 'progen.views.signup', name='signup'),
     url(r'profile', 'progen.views.profile', name='profile'),
     url(r'logout', 'django.contrib.auth.views.logout',{'next_page': '/login'}),
+    url(r'(P<username>[\w.@+-,\' \'\';\'%{}\[\]]+)?$', 'progen.views.stupro', name='stupro'),
+
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+)
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )

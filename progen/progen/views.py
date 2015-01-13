@@ -86,6 +86,12 @@ def profile(request):
 		return	render_to_response("profile.html",{'user':request.user},context_instance=RequestContext(request))
 	else:
 		return redirect('/login/?next=%s' % request.path)
+
+def stupro(request,username=None):
+	#write the queries for getting the details of the user
+	return render_to_response("display.html")
+
+
 # def allotmentform(request):
 # 	if request.POST:
 # 		name = request.POST['name']
