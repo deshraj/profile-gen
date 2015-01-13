@@ -1,16 +1,35 @@
 <html>
 	<head>
-		<title>
-			JSS Students Profile
-		</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>JSS Students Portal</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+	{% if logout %}
+    	<div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Hey!</strong> You have been successfully logged Out.
+    </div>
+	{% endif %}
 		<div>
-			<a href="/login">Login</a>
-			<a href="/register">Signup</a>
+			<a href="/login"><center><h3>Login</h3></center></a>
+			<a href="/register"><center><h3>Signup</h3></center></a>
 		</div>
 		<div>
-			<h4>This portal is for the students of the JSS Acadmey of Technical Education Noida so that they can have their home page and while applying for the internships they can upload the profile to this page.</h4>
+			<h4><center>This portal is for the students of the JSS Acadmey of Technical Education Noida so that they can have their home page while applying for the internships. The generated page will act as their protfolio page.</center></h4>
 		</div>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>

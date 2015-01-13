@@ -7,15 +7,20 @@ from django.views.generic import RedirectView
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login, logout
+from django.contrib.auth.models import User
 # import settings
 # import allot.urls
-from allot.urls import * 
+from progen.urls import * 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'progen.views.home', name='home'),
+    url(r'^$', 'progen.views.home', name='home'),
+    url(r'login', 'progen.views.login', name='login'),
+    url(r'register', 'progen.views.signup', name='signup'),
+    url(r'profile', 'progen.views.profile', name='profile'),
+    url(r'logout', 'django.contrib.auth.views.logout',{'next_page': '/login'}),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

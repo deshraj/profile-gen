@@ -16,12 +16,13 @@
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-      <form class="form-horizontal">
+      <form class="form-horizontal" method="post" action="">
       {% csrf_token %}
     <fieldset>
     <!-- Form Name -->
     <!-- Text input-->
     <div class="form-group">
+    <br><br><br><br><br><br><br>
       <label class="col-md-4 control-label" for="username">Username</label>  
       <div class="col-md-4">
       <input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
@@ -42,13 +43,15 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="submitBtn"></label>
       <div class="col-md-4">
-        <button id="submitBtn" name="submitBtn" class="btn btn-primary">Login</button>
+        <button id="submitBtn" name="submitBtn" type="submit" class="btn btn-primary">Login</button>
       </div>
     </div>
 
     </fieldset>
     </form>
-
+    <div>
+      <h4><center>Not a member yet. You can <a href="/register"> Signup </a> here.</center></h4>      
+    </div> 
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
