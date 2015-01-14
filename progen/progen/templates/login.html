@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Login JSS Students</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-			<!-- Latest compiled and minified CSS -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-			<!-- Optional theme -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-			<!-- Latest compiled and minified JavaScript -->
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-      <form class="form-horizontal" method="post" action="">
-      {% csrf_token %}
-    <fieldset>
-    <!-- Form Name -->
-    <!-- Text input-->
-    <div class="form-group">
-    <br><br><br><br><br><br><br>
-      <label class="col-md-4 control-label" for="username">Username</label>  
-      <div class="col-md-4">
-      <input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
-        
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login JSS Students</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <style>
+    .form-control,.form-control:focus,.btn{
+      border-radius:0;
+      box-shadow:none;
+    }
+    label{
+      font-weight:300;
+    }
+    .row{
+      margin:0;
+    }
+    .loginContainer{
+      background-color: #fff;
+      box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.3);
+      margin-top:8%;
+      padding-top:20px;
+      padding-bottom:20px;
+    }
+    .loginContainer h1{
+      font-size:2em;
+      margin-top:0;
+    }
+    .btn{
+      background:#34495E;
+      border:0;
+      display:block;
+      width:100%;
+      max-width:200px;
+      margin:auto;
+    }
+    body{
+      background:#ccc;
+    }
+  </style>
+</head>
+<body>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4 loginContainer">
+        <h1 class="text-center">Login to edit</h1>
+        <form role="form" method="post" action="">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="control-label" for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
+          </div>
+          <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Login">
+          </div>
+        </form>
+        <p class="text-center">Not a member yet. You can <a href="/register">Signup</a> here</p>
+      </div>        
     </div>
-
-    <!-- Password input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="password">Password</label>
-      <div class="col-md-4">
-        <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
-        
-      </div>
-    </div>
-
-    <!-- Button -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="submitBtn"></label>
-      <div class="col-md-4">
-        <button id="submitBtn" name="submitBtn" type="submit" class="btn btn-primary">Login</button>
-      </div>
-    </div>
-
-    </fieldset>
-    </form>
-    <div>
-      <h4><center>Not a member yet. You can <a href="/register"> Signup </a> here.</center></h4>      
-    </div> 
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-	</body>
+  </section>
+</body>
 </html>
