@@ -9,7 +9,6 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.shortcuts import redirect
-# import mongoengine
 from django.core.mail import send_mail
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMultiAlternatives
@@ -17,10 +16,7 @@ from django.template.loader import get_template
 from django.template import Context
 from datetime import datetime,timedelta
 import random,string
-# import settings
-# import datetime
-# from pyUrl.models import * 
-# Create your views here.
+
 def home(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/profile")
@@ -75,7 +71,7 @@ def changepassword(request):
 			user.save()
 	return HttpResponseRedirect("/profile")
 
-
+# donot delete this function as it may be used in future for the purpose of logout to a specific page
 # def logout_view(request):
 # 	logout(request)
 # 	# return HttpResponseRedirect("/")
@@ -90,14 +86,3 @@ def profile(request):
 def stupro(request,username=None):
 	#write the queries for getting the details of the user
 	return render_to_response("display.html")
-
-
-# def allotmentform(request):
-# 	if request.POST:
-# 		name = request.POST['name']
-# 		univRoll = request.POST['univRoll']
-# 		year = request.POST['year'],context_instance=RequestContext(request)
-# 		mobile = request.POST['mobile']
-# 		print name, univRoll, year, mobile
-# 		# name = request.POST['name']
-# 	return render_to_response('allotmentForm.html',context_instance=RequestContext(request))
