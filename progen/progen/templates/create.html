@@ -1,0 +1,238 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JSS Students Portal</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="static/css/create.css">
+	<style>
+	</style>
+</head>
+<body>
+	<header class="container-fluid">
+		<div class="row">
+			<div class="col-xs-3">
+				<img src="static/images/fclogo.png" alt="JSSATEN" class="img-responsive">
+			</div>
+			<div class="col-xs-6">
+				<h1 class="text-center">Student Academic Record</h1>
+			</div>
+			<div class="col-xs-3">
+				<ul class="links">
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Signup</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<section class="container-fluid">
+		<form action="" role="form" method="post">
+			<div class="row infoContainer">
+				<div class="col-sm-12"><h1>Personal Info</h1></div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="url">Website Url</label>
+						<input type="url" name="url" id="url" class="form-control" placeholder="URL" required>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="phnum">Phone number</label>
+						<input type="number" min='10' max='10' name="phnum" id="phnum" class="form-control" placeholder="Contact number">
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Education</h1>
+				</div>
+				<div class="col-sm-6">
+					<p><strong>10th Class</strong></p>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="10thScore">Score</label>
+								<input type="number" class="form-control" id="10thScore" name="10thScore">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="10thFrom">From</label>
+								<input type="text" class="form-control" id="10thFrom" name="10thFrom">
+							</div>
+						</div>
+					</div>			
+				</div>
+				<div class="col-sm-6">
+					<p><strong>12th Class</strong></p>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="12thScore">Score</label>
+								<input type="number" class="form-control" id="12thScore" name="12thScore">
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="12thFrom">From</label>
+								<input type="text" class="form-control" id="12thFrom" name="12thFrom">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="branch">Branch / Course</label>
+								<input type="text" class="form-control" id="branch" name="branch">
+							</div>							
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="1sem">1st Semester Marks</label>
+								<input type="number" class="form-control" id="1sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="2sem">2nd Semester Marks</label>
+								<input type="number" class="form-control" id="2sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="3sem">3rd Semester Marks</label>
+								<input type="number" class="form-control" id="3sem" name="semMarks[]">
+							</div>
+					  </div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="4sem">4th Semester Marks</label>
+								<input type="number" class="form-control" id="4sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="5sem">5th Semester Marks</label>
+								<input type="number" class="form-control" id="5sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="6sem">6th Semester Marks</label>
+								<input type="number" class="form-control" id="6sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="7sem">7th Semester Marks</label>
+								<input type="number" class="form-control" id="7sem" name="semMarks[]">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="8sem">8th Semester Marks</label>
+								<input type="number" class="form-control" id="8sem" name="semMarks[]">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Skills</h1>
+					<div class="form-group" style="max-width:400px">
+						<input type="text" name="skills[]" class="form-control" placeholder="Skill">
+					</div>
+					<div class="form-group">
+						<a href="javascript:" class="btn btn-primary add">Add More Skills</a>
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Projects</h1>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group" style="max-width:400px">
+						<label for="title">Project Name</label>
+						<input type="text" name="projectName[]" id="title" class="form-control" placeholder="Project Name" style="margin-bottom:5px">
+						<textarea name="projectDescription[]" style="resize:none" class="form-control" placeholder="description"></textarea>
+					</div>
+					<div class="form-group">
+						<a href="javascript:" class="btn btn-primary add">Add More Projects</a>
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Experience and Interns</h1>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="EOrI[]" placeholder="Experience/Interns">
+					</div>
+					<div class="form-group">
+						<a href="javascript:" class="btn btn-primary add">Add More</a>
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Intrests</h1>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="intern[]" placeholder="Intrests">
+					</div>
+					<div class="form-group">
+						<a href="javascript:" class="btn btn-primary add">Add More</a>
+					</div>
+				</div>
+			</div>
+			<div class="row infoContainer">
+				<div class="col-sm-12">
+					<h1>Achievements</h1>
+				</div>
+				<div class="col-sm-12">
+					<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="achievements[]" placeholder="Achievements">
+					</div>
+					<div class="form-group">
+						<a href="javascript:" class="btn btn-primary add">Add More</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</section>
+	<footer class="container-fluid text-center">
+		<a href="javascript:">About Us</a>
+	</footer>
+</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script>
+	$(document).on('click','.add',function(){
+		elem = $(this).parent().prev().clone();
+		elem.find('input').val('');
+		elem.insertBefore($(this).parent()).hide().fadeIn();
+	});
+	</script>
+</html>
