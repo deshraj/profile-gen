@@ -87,4 +87,6 @@ def profile(request):
 
 def stupro(request,username=None):
 	#write the queries for getting the details of the user
+	# 
 	return render_to_response("display.html")
+
