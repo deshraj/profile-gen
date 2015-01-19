@@ -86,3 +86,9 @@ def profile(request):
 def stupro(request,username=None):
 	#write the queries for getting the details of the user
 	return render_to_response("display.html")
+
+def createProfile(request):
+	if request.user.is_authenticated():
+		return render_to_response("create.html",context_instance=RequestContext(request))
+	else:
+		return render_to_response("index.html",context_instance=RequestContext(request))
