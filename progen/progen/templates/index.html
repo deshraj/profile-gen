@@ -21,8 +21,13 @@
 			</div>
 			<div class="col-xs-3">
 				<ul class="links">
-					<li><a href="/login">Login</a></li>
-					<li><a href="/register">Signup</a></li>
+					{% if user.is_authenticated %}
+						<li style="color:white;">Welcome {{ user.first_name }} {{ user.last_name }}</li>
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Signup</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
