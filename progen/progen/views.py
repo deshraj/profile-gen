@@ -18,10 +18,10 @@ from datetime import datetime,timedelta
 import random,string
 
 def home(request):
-	if request.user.is_authenticated():
-		return HttpResponseRedirect("/profile")
-	else:
-		return render_to_response("index.html",context_instance=RequestContext(request))
+	# if request.user.is_authenticated():
+	# 	return HttpResponseRedirect("/profile")
+	# else:
+	return render_to_response("index.html",context_instance=RequestContext(request))
 
 def signup(request):
 	if not request.user.is_active:
@@ -30,8 +30,10 @@ def signup(request):
 			username = request.POST['username']
 			email = request.POST['email']
 			password = request.POST['password']
+			firstname = request.POST['firstname']
+			lastname = request.POST['lastname']
 			try:
-				user = User.objects.create_user(username=username,email=email,password=password)
+				user = User.objects.create_user(username=username,email=email,password=password,first_name=firstname,last_name=lastname)
 				user.save()
 				return HttpResponseRedirect("/profile")
 			except:
