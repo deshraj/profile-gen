@@ -80,8 +80,39 @@ def changepassword(request):
 # 	return render_to_response("index.html",{'logout':1},context_instance=RequestContext(request))
 def profile(request):
 	if request.user.is_authenticated() :
+		if request.POST:
+			print "CAUGHT THE POST REQUEST"
+			name = request.POST['name']
+			email = request.POST['email']
+			url = request.POST['url']
+			phnum = request.POST['phnum']
+			_10thScore = request.POST['10thScore']
+			_12thScore = request.POST['12thScore']
+			branch = request.POST['branch']
+			semMarks = request.POST.getlist('semMarks')
+			skills = request.POST.getlist('skills')
+			projectName = request.POST.getlist('projectName')
+			projectDescription = request.POST.getlist('projectDescription')
+			EOrI = request.POST.getlist('EOrI')
+			intrests = request.POST.getlist('intrests')
+			achievements = request.POST.getlist('achievements')
+			print name
+			print email
+			print url
+			print phnum
+			print _10thScore
+			print _12thScore
+			print branch
+			print semMarks
+			print skills
+			print projectName
+			print projectDescription
+			print EOrI
+			print intrests
+			print achievements
+			 
 		print "the authenticated user is ", request.user.username
-		return	render_to_response("profile.html",{'user':request.user},context_instance=RequestContext(request))
+		return	render_to_response("create.html",{'user':request.user},context_instance=RequestContext(request))
 	else:
 		return redirect('/login/?next=%s' % request.path)
 
