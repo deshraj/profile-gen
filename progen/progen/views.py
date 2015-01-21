@@ -14,9 +14,9 @@ from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from progen.models import * 
 from datetime import datetime,timedelta
 import random,string
-
 def home(request):
 	# if request.user.is_authenticated():
 	# 	return HttpResponseRedirect("/profile")
@@ -79,39 +79,63 @@ def changepassword(request):
 # 	# return HttpResponseRedirect("/")
 # 	return render_to_response("index.html",{'logout':1},context_instance=RequestContext(request))
 def profile(request):
+	userr = request.user.username	
 	if request.user.is_authenticated() :
-		if request.POST:
-			print "CAUGHT THE POST REQUEST"
-			name = request.POST['name']
-			email = request.POST['email']
-			url = request.POST['url']
-			phnum = request.POST['phnum']
-			_10thScore = request.POST['10thScore']
-			_12thScore = request.POST['12thScore']
-			branch = request.POST['branch']
-			semMarks = request.POST.getlist('semMarks')
-			skills = request.POST.getlist('skills')
-			projectName = request.POST.getlist('projectName')
-			projectDescription = request.POST.getlist('projectDescription')
-			EOrI = request.POST.getlist('EOrI')
-			intrests = request.POST.getlist('intrests')
-			achievements = request.POST.getlist('achievements')
-			print name
-			print email
-			print url
-			print phnum
-			print _10thScore
-			print _12thScore
-			print branch
-			print semMarks
-			print skills
-			print projectName
-			print projectDescription
-			print EOrI
-			print intrests
-			print achievements
-			 
-		print "the authenticated user is ", request.user.username
+		try:
+			UserDetails.objects.get(user= userr )
+			new = 0
+		except: 
+			new = 1
+		if new==1:
+			print "$$$$$$$$$$$$$$$$$$$$$$$$$$$ THE USER IS GOING TO CREATE THE PROFILE $$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+			if request.POST:
+				print "CAUGHT THE POST REQUEST"
+				username = request.user.username
+				name = request.POST['name']
+				email = request.POST['email']
+				url = request.POST['url']
+				phnum = request.POST['phnum']
+				_10thScore = request.POST['10thScore']
+				_10thFrom = request.POST['10thFrom']
+				_12thScore = request.POST['12thScore']
+				_12thFrom = request.POST['12thFrom']
+				branch = request.POST['branch']
+				semMarks = request.POST.getlist('semMarks')
+				skillss = request.POST.getlist('skills')
+				projectName = request.POST.getlist('projectName')
+				projectDescription = request.POST.getlist('projectDescription')
+				EOrI = request.POST.getlist('EOrI')
+				intrests = request.POST.getlist('intrests')
+				achievements = request.POST.getlist('achievements')
+
+				print name
+				print email
+				print url
+				print phnum
+				print _10thScore
+				print _12thScore
+				print branch
+				print semMarks
+				print skillss
+				print projectName
+				print projectDescription
+				print EOrI
+				print intrests
+				print achievements
+				# _id = User.objects.filter(username=request.user.username)
+				# education.objects.create(_10thPercent=_10thScore,_12thPercent=_12thScore,_10thSchool = _10thFrom,_12thSchool = _12thFrom, btech1stSem = semMarks[0], btech2ndSem = semMarks[1], btech3rdSem = semMarks[2], btech4thSem = semMarks[3], btech5thSem = semMarks[4], btech6thSem = semMarks[5], btech7thSem = semMarks[6], btech8thSem = semMarks[7]).save()
+				UserDetails.objects.create(user = username,branch = branch, phno = phnum).save()
+				Education.objects.create(user = username,_10thPercent=_10thScore,_12thPercent=str(_12thScore),_10thSchool = _10thFrom,_12thSchool = _12thFrom,btechmarks = semMarks).save()
+				Skills.objects.create(user = username,skillsSet = skillss).save()
+				Projects.objects.create(user = username,title = projectName, description = projectDescription).save()
+				Experience.objects.create(user = username,expDesc = EOrI).save()
+				Achievements.objects.create(user = username,desc = achievements).save()
+				Intrests.objects.create(user = username,description = intrests).save()
+				# print "the authenticated user is ", username
+			# this else part shows that the user is not new
+		else:
+			print "######################## THE USER IS GOING TO UPDATE THE PROFILE ###########################"
+			#write the queries for updating the user 
 		return	render_to_response("create.html",{'user':request.user},context_instance=RequestContext(request))
 	else:
 		return redirect('/login/?next=%s' % request.path)
@@ -120,7 +144,7 @@ def stupro(request,username=None):
 	#write the queries for getting the details of the user
 	return render_to_response("display.html")
 
-def createProfile(request):
+def create(request):
 	if request.user.is_authenticated():
 		return render_to_response("create.html",context_instance=RequestContext(request))
 	else:

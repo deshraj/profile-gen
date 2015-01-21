@@ -21,8 +21,8 @@
 			</div>
 			<div class="col-xs-3">
 				<ul class="links">
-					<li><a href="/login">Login</a></li>
-					<li><a href="/register">Signup</a></li>
+						<li style="color:white;">Welcome {{ user.first_name }} {{ user.last_name }}</li>
+						<li><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -35,19 +35,19 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+						<input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ user.first_name }} {{ user.last_name}}" required>
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+						<input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{ user.email }}" required>
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="url">Website Url</label>
-						<input type="url" name="url" id="url" class="form-control" placeholder="URL" required>
+						<input type="url" name="url" id="url" class="form-control" placeholder="URL" >
 					</div>
 				</div>
 				<div class="col-sm-3">

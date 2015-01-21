@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'login', 'progen.views.login', name='login'),
     url(r'register', 'progen.views.signup', name='signup'),
     url(r'profile', 'progen.views.profile', name='profile'),
-    url(r'createProfile','progen.views.createProfile', name='createProfile'),
+    url(r'create','progen.views.create', name='create'),
     url(r'logout', 'django.contrib.auth.views.logout',{'next_page': '/login'}),
     url(r'(P<username>[\w.@+-,\' \'\';\'%{}\[\]]+)?$', 'progen.views.stupro', name='stupro'),
 
