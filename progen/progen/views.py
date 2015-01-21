@@ -16,7 +16,7 @@ from django.template.loader import get_template
 from django.template import Context
 from progen.models import * 
 from datetime import datetime,timedelta
-import random,string
+import random,string,ast
 def home(request):
 	# if request.user.is_authenticated():
 	# 	return HttpResponseRedirect("/profile")
@@ -95,16 +95,6 @@ def profile(request):
 	else:
 		return redirect('/login/?next=%s' % request.path)
 
-def stupro(request,username=None):
-	#write the queries for getting the details of the user
-	return render_to_response("display.html")
-
-def create(request):
-	if request.user.is_authenticated():
-		return render_to_response("create.html",context_instance=RequestContext(request))
-	else:
-		return render_to_response("index.html",context_instance=RequestContext(request))
-
 def newProfile(request):
 	print "$$$$$$$$$$$$$$$$$$$$$$$$$$$ THE USER IS GOING TO CREATE THE PROFILE $$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 	if request.POST:
@@ -155,4 +145,75 @@ def newProfile(request):
 def updateProfile(request):
 	print "######################## THE USER IS GOING TO UPDATE THE PROFILE ###########################"
 	# WRITE THE QUERIES FOR UPDATING THE WHOLE USER DETAILS 
-	return "hello"
+	if request.POST:
+		print "CAUGHT THE POST REQUEST"
+		username = request.user.username
+		name = request.POST['name']
+		email = request.POST['email']
+		url = request.POST['url']
+		phnum = request.POST['phnum']
+		_10thScore = request.POST['10thScore']
+		_10thFrom = request.POST['10thFrom']
+		_12thScore = request.POST['12thScore']
+		_12thFrom = request.POST['12thFrom']
+		branch = request.POST['branch']
+		semMarks = request.POST.getlist('semMarks')
+		skillss = request.POST.getlist('skills')
+		projectName = request.POST.getlist('projectName')
+		projectDescription = request.POST.getlist('projectDescription')
+		EOrI = request.POST.getlist('EOrI')
+		intrests = request.POST.getlist('intrests')
+		achievements = request.POST.getlist('achievements')
+		print name
+		print email
+		print url
+		print phnum
+		print _10thScore
+		print _12thScore
+		print branch
+		print semMarks
+		print skillss
+		print projectName
+		print projectDescription
+		print EOrI
+		print intrests
+		print achievements
+		username = request.user.username
+		UserDetails.objects.filter(user = username ).update(branch = branch, phno = phnum)
+		Education.objects.filter(user = username ).update(_10thPercent=_10thScore,_12thPercent=str(_12thScore),_10thSchool = _10thFrom,_12thSchool = _12thFrom,btechmarks = semMarks)
+		Skills.objects.filter(user = username ).update(skillsSet = skillss)
+		Projects.objects.filter(user = username ).update(title = projectName, description = projectDescription)
+		Experience.objects.filter(user = username ).update(expDesc = EOrI)
+		Achievements.objects.filter(user = username ).update(desc = achievements)
+		Intrests.objects.filter(user = username ).update(description = intrests)
+
+def display(request,username=None):
+	#write the queries for getting the details of the user
+	try:
+		username = str(request.path[1:])
+		u1 = User.objects.get(username = username)
+		u2 = UserDetails.objects.get(user = username )
+		education = Education.objects.get(user = username )
+		skills = Skills.objects.get(user = username )
+		projects = Projects.objects.get(user = username )
+		experience = Experience.objects.get(user = username )
+		achievements = Achievements.objects.get(user = username )
+		intrests = Intrests.objects.get(user = username )
+		print u1
+		print u2
+		# education.btechmarks
+		education.btechmarks = [ item.encode('ascii') for item in ast.literal_eval(education.btechmarks) ]
+		print education.btechmarks
+		for i in education.btechmarks:
+			print i
+		skills.skillsSet = [ item.encode('ascii') for item in ast.literal_eval(skills.skillsSet)]
+		projects.title = [ item.encode('ascii') for item in ast.literal_eval(projects.title)]
+		projects.description = [ item.encode('ascii') for item in ast.literal_eval(projects.description) ]
+		projects = zip(projects.title,projects.description)
+		experience.expDesc = [ item.encode('ascii') for item in ast.literal_eval(experience.expDesc)]
+		achievements.desc = [ item.encode('ascii') for item in ast.literal_eval(achievements.desc) ]
+		intrests.description = [ item.encode('ascii') for item in ast.literal_eval(intrests.description) ]
+		# prolen = len(projects.title)
+		return render_to_response("display.html",{'u1':request.user,'u2':u2,'education':education,'skills':skills,'projects':projects,'experience':experience,'achievements':achievements,'intrests':intrests},context_instance=RequestContext(request))
+	except:
+		return HttpResponse("<h3>The User has not signed up yet</h3>")
