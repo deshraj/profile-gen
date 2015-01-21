@@ -5,6 +5,7 @@ class UserDetails(models.Model):
 	user = models.CharField(max_length = 70)
 	branch = models.CharField(max_length = 500)
 	phno  = models.CharField(max_length = 10)
+	# url = models.CharField(max_length=1000)
 class Education(models.Model):
 	user = models.CharField(max_length = 70)
 	_10thSchool = models.CharField(max_length =500)
