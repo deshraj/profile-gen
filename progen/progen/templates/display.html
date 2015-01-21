@@ -21,8 +21,13 @@
 			</div>
 			<div class="col-xs-3">
 				<ul class="links">
-					<li><a href="/login">Login</a></li>
-					<li><a href="/register">Signup</a></li>
+					{% if user.is_authenticated %}
+						<li style="color:white;">Welcome {{ u1.first_name }} {{ u1.last_name }}</li>
+						<li><a href="/logout">Logout</a></li>
+					{% else %}
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Signup</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -31,15 +36,15 @@
 		<div class="row infoContainer">
 			<div class="col-sm-12"><h1>Personal Info</h1></div>
 			<div class="col-sm-3">
-				<p><strong>Name :</strong> Deshraj Yadav</p>
+				<p><strong>Name :</strong>{{u1.first_name }} {{ u1.last_name }}</p>
 			</div>
 			<div class="col-sm-3">
-				<p><strong>Email :</strong> deshrajdry@gmail.com</p>
+				<p><strong>Email :</strong> {{ u1.email }}</p>
 			</div>
 			<div class="col-sm-3">
-				<p><strong>Website :</strong> <a href="http://www.deshraj.in" target="_blank">http://www.deshraj.in</a></p></div>
+				<p><strong>Website :</strong> <a href="{{ u2.url }}" target="_blank">{{ u2.url }}</a></p></div>
 			<div class="col-sm-3">
-				<p><strong>Phone :</strong> 09555344456</p></div>
+				<p><strong>Phone :</strong>{{ u2.phno }}</p></div>
 		</div>
 		<div class="row infoContainer">
 			<div class="col-sm-12">
@@ -48,28 +53,28 @@
 			<div class="col-sm-6">
 				<p><strong>10th Class</strong></p>
 				<div class="row">
-					<div class="col-xs-6"><p><strong>Score :</strong> 99% </p></div>
-					<div class="col-xs-6"><p><strong>From :</strong> Kendriya Vidyalaya</p></div>
+					<div class="col-xs-6"><p><strong>Score :</strong>{{ education.10thPercent }}</p></div>
+					<div class="col-xs-6"><p><strong>From :</strong>{{ education.10thSchool }}</p></div>
 				</div>			
 			</div>
 			<div class="col-sm-6">
 				<p><strong>12th Class</strong></p>
 				<div class="row">
-					<div class="col-xs-6"><p><strong>Score :</strong> 99% </p></div>
-					<div class="col-xs-6"><p><strong>From :</strong> Kendriya Vidyalaya</p></div>
+					<div class="col-xs-6"><p><strong>Score :</strong>{{ education.12thPercent }}</p></div>
+					<div class="col-xs-6"><p><strong>From :</strong>{{ education.12thSchool }}</p></div>
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<p><strong>Btech in Computer Science and Engineering</strong></p>
+				<p><strong>{{ u2.branch }}</strong></p>
 				<div class="row">
-					<div class="col-sm-3"><p><strong>1st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>2st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>3st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>4st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>5st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>6st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>7st Semester</strong> 98%</p></div>
-					<div class="col-sm-3"><p><strong>8st Semester</strong> 98%</p></div>
+					<div class="col-sm-3"><p><strong>1st Semester:    </strong>{{ education.btechmarks.0 }}%</p></div>
+					<div class="col-sm-3"><p><strong>2nd Semester:    </strong>{{ education.btechmarks.1 }}%</p></div>
+					<div class="col-sm-3"><p><strong>3rd Semester:    </strong>{{ education.btechmarks.2 }}%</p></div>
+					<div class="col-sm-3"><p><strong>4th Semester:    </strong>{{ education.btechmarks.3 }}%</p></div>
+					<div class="col-sm-3"><p><strong>5th Semester:    </strong>{{ education.btechmarks.4 }}%</p></div>
+					<div class="col-sm-3"><p><strong>6th Semester:    </strong>{{ education.btechmarks.5 }}%</p></div>
+					<div class="col-sm-3"><p><strong>7th Semester:    </strong>{{ education.btechmarks.6 }}%</p></div>
+					<div class="col-sm-3"><p><strong>8th Semester:    </strong>{{ education.btechmarks.7 }}%</p></div>
 				</div>
 			</div>
 		</div>
@@ -78,30 +83,9 @@
 				<h1>Skills</h1>
 			<div class="col-sm-12" style="padding-left:0">
 				<ul class="skills">
-					<li>Python</li>
-					<li>Django</li>
-					<li>ElasticSearch</li>
-					<li>MongoDB</li>
-					<li>Linux</li>
-					<li>C++</li>
-					<li>Unix Shell Scripting</li>
-					<li>OpenCV</li>
-					<li>Computer Vision</li>
-					<li>HTML</li>
-					<li>CSS</li>
-					<li>XML</li>
-					<li>Javascript</li>
-					<li>Windows Mobile</li>
-					<li>C</li>
-					<li>Mobile Applications</li>
-					<li>Networking</li>
-					<li>C#</li>
-					<li>Mysql</li>
-					<li>Git</li>
-					<li>Json</li>
-					<li>C++</li>
-					<li>Shell Scripting</li>
-					<li>Objective-C</li>
+				{% for i in skills.skillsSet %}
+					<li>{{ i }}</li>
+				{% endfor %}
 				</ul>
 			</div>
 			</div>
@@ -110,22 +94,12 @@
 			<div class="col-sm-12">
 				<h1>Projects</h1>
 			</div>
+			{% for i,j in projects %}
 			<div class="projects col-sm-12">
-				<h2>VideoLoot - A Youtube Downloader</h2>
-				<p>This is a web application that helps the users to download youtube videos in a one step process. Only they need to paste the url and then they can download the video in any quality. I was responsible for developing the backend of this web application. Technologies used are Django Framework, Python Scripting, some python packages like NumPy and Pafy etc, HTML5, CSS3, Javascript and Bootstrap.</p>
+				<h2>{{ i }}</h2>
+				<p>{{ j }}</p>
 			</div>
-			<div class="projects col-sm-12">
-				<h2>Data Scraping Project for Songs Download</h2>
-				<p>This project is for easy downloading of Bollywood Songs. Data is scraped from some popular Songs Website and about database of 50,000 songs is made. It also helps users to get rid of the ads and pop ups and fake download buttons on the websites. SImple click and download facility is there. Technologies used in this project are Python, Scrapy framework, Django framework, HTML5, CSS3, Bootstrap.</p>
-			</div>
-			<div class="projects col-sm-12">
-				<h2>PyUrl Shortner</h2>
-				<p>It is a costumized url shortening service that lets the user to get costum shortened url that he wants. The main advantage of this product is the costumisation of shortened urls that gives full freedom to a user to create his won url.</p>
-			</div>
-			<div class="projects col-sm-12">
-				<h2>Image Based Search In Computers</h2>
-				<p>This is an Image Processing based project to search the images that exactly look same as another image that user provides and it searches through the whole Computer and gives very accurate results (very similar to the Google Image Search ).Technologies Used : Python, OpenCV, Linux Shell Scripting</p>
-			</div>
+			{% endfor %}
 		</div>
 		<div class="row infoContainer">
 			<div class="col-sm-12">
@@ -133,11 +107,9 @@
 			</div>
 			<div class="col-sm-12">
 				<ul>
-					<li>Organizer and Developer at GDG</li>
-					<li>Organizing Member Nibble Computer Society</li>
-					<li>Fratmart Technology Intern</li>
-					<li>Take Zero Backend Developer</li>
-					<li>Crack the Shell Zealicon-2014 Event Coordinator</li>
+				{% for i in experience.expDesc %}
+					<li>{{ i }}</li>
+				{% endfor %}
 				</ul>
 			</div>
 		</div>
@@ -147,13 +119,9 @@
 			</div>
 			<div class="col-sm-12">
 				<ul class="intrests">
-					<li>Coding</li>
-					<li>Debugging</li>
-					<li>Computers</li>
-					<li>New Technologies</li>
-					<li>Mobile Phones</li>
-					<li>Games</li>
-					<li>Reading</li>
+				{% for i in intrests.description %}
+					<li>{{ i }}</li>
+				{% endfor %}
 				</ul>
 			</div>
 		</div>
@@ -163,10 +131,9 @@
 			</div>
 			<div class="col-sm-12">
 				<ul>
-					<li>First Runner Up at Hack-A-Thon Summer 2014</li>
-					<li>First in Cassiopeian Wars</li>
-					<li>Second Runner Up in Linux Challenge</li>
-					<li>First Runner Up at Junkyard Wars</li>
+				{% for i in achievements.desc %}
+					<li>{{ i }}</li>
+				{% endfor %}
 				</ul>
 			</div>
 		</div>
