@@ -8,10 +8,10 @@ class UserDetails(models.Model):
 	# url = models.CharField(max_length=1000)
 class Education(models.Model):
 	user = models.CharField(max_length = 70)
-	_10thSchool = models.CharField(max_length =500)
-	_10thPercent = models.CharField(max_length = 7)
-	_12thSchool = models.CharField(max_length=500)
-	_12thPercent = models.CharField(max_length=7)
+	t10thSchool = models.CharField(max_length =500)
+	t10thPercent = models.CharField(max_length = 7)
+	t12thSchool = models.CharField(max_length=500)
+	t12thPercent = models.CharField(max_length=7)
 	btechmarks = models.CharField(max_length = 100)
 
 class Skills(models.Model):

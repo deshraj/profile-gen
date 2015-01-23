@@ -134,7 +134,7 @@ def newProfile(request):
 		# _id = User.objects.filter(username=request.user.username)
 		# education.objects.create(_10thPercent=_10thScore,_12thPercent=_12thScore,_10thSchool = _10thFrom,_12thSchool = _12thFrom, btech1stSem = semMarks[0], btech2ndSem = semMarks[1], btech3rdSem = semMarks[2], btech4thSem = semMarks[3], btech5thSem = semMarks[4], btech6thSem = semMarks[5], btech7thSem = semMarks[6], btech8thSem = semMarks[7]).save()
 		UserDetails.objects.create(user = username,branch = branch, phno = phnum).save()
-		Education.objects.create(user = username,_10thPercent=_10thScore,_12thPercent=str(_12thScore),_10thSchool = _10thFrom,_12thSchool = _12thFrom,btechmarks = semMarks).save()
+		Education.objects.create(user = username,t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks).save()
 		Skills.objects.create(user = username,skillsSet = skillss).save()
 		Projects.objects.create(user = username,title = projectName, description = projectDescription).save()
 		Experience.objects.create(user = username,expDesc = EOrI).save()
@@ -180,7 +180,7 @@ def updateProfile(request):
 		print achievements
 		username = request.user.username
 		UserDetails.objects.filter(user = username ).update(branch = branch, phno = phnum)
-		Education.objects.filter(user = username ).update(_10thPercent=_10thScore,_12thPercent=str(_12thScore),_10thSchool = _10thFrom,_12thSchool = _12thFrom,btechmarks = semMarks)
+		Education.objects.filter(user = username ).update(t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks)
 		Skills.objects.filter(user = username ).update(skillsSet = skillss)
 		Projects.objects.filter(user = username ).update(title = projectName, description = projectDescription)
 		Experience.objects.filter(user = username ).update(expDesc = EOrI)
