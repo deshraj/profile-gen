@@ -78,6 +78,7 @@ def changepassword(request):
 # 	logout(request)
 # 	# return HttpResponseRedirect("/")
 # 	return render_to_response("index.html",{'logout':1},context_instance=RequestContext(request))
+
 def profile(request):
 	userr = request.user.username	
 	if request.user.is_authenticated() :
@@ -117,34 +118,11 @@ def newProfile(request):
 		intrests = request.POST.getlist('intrests')
 		achievements = request.POST.getlist('achievements')
 
-		print name
-		print email
-		print url
-		print phnum
-		print _10thScore
-		print _12thScore
-		print branch
-		print semMarks
-		print skillss
-		print projectName
-		print projectDescription
-		print EOrI
-		print intrests
-		print achievements
-		# _id = User.objects.filter(username=request.user.username)
-		# education.objects.create(_10thPercent=_10thScore,_12thPercent=_12thScore,_10thSchool = _10thFrom,_12thSchool = _12thFrom, btech1stSem = semMarks[0], btech2ndSem = semMarks[1], btech3rdSem = semMarks[2], btech4thSem = semMarks[3], btech5thSem = semMarks[4], btech6thSem = semMarks[5], btech7thSem = semMarks[6], btech8thSem = semMarks[7]).save()
-		UserDetails.objects.create(user = username,branch = branch, phno = phnum).save()
-		Education.objects.create(user = username,t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks).save()
-		Skills.objects.create(user = username,skillsSet = skillss).save()
-		Projects.objects.create(user = username,title = projectName, description = projectDescription).save()
-		Experience.objects.create(user = username,expDesc = EOrI).save()
-		Achievements.objects.create(user = username,desc = achievements).save()
-		Intrests.objects.create(user = username,description = intrests).save()
-		# print "the authenticated user is ", username
+		a = userDetails.objects.create(user = username,branch = branch, phno = phnum, t10thPercent=_10thScore, t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, interestDesc = intrests, achieveDesc = achievements)
+		a.save()
 
 def updateProfile(request):
 	print "######################## THE USER IS GOING TO UPDATE THE PROFILE ###########################"
-	# WRITE THE QUERIES FOR UPDATING THE WHOLE USER DETAILS 
 	if request.POST:
 		print "CAUGHT THE POST REQUEST"
 		username = request.user.username
@@ -164,56 +142,22 @@ def updateProfile(request):
 		EOrI = request.POST.getlist('EOrI')
 		intrests = request.POST.getlist('intrests')
 		achievements = request.POST.getlist('achievements')
-		print name
-		print email
-		print url
-		print phnum
-		print _10thScore
-		print _12thScore
-		print branch
-		print semMarks
-		print skillss
-		print projectName
-		print projectDescription
-		print EOrI
-		print intrests
-		print achievements
 		username = request.user.username
-		UserDetails.objects.filter(user = username ).update(branch = branch, phno = phnum)
-		Education.objects.filter(user = username ).update(t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks)
-		Skills.objects.filter(user = username ).update(skillsSet = skillss)
-		Projects.objects.filter(user = username ).update(title = projectName, description = projectDescription)
-		Experience.objects.filter(user = username ).update(expDesc = EOrI)
-		Achievements.objects.filter(user = username ).update(desc = achievements)
-		Intrests.objects.filter(user = username ).update(description = intrests)
+		userDetails.objects.filter(user = username ).update(branch = branch, phno = phnum, t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, achieveDesc = achievements, interestDesc = intrests)
 
 def display(request,username=None):
-	#write the queries for getting the details of the user
 	try:
 		username = str(request.path[1:])
 		u1 = User.objects.get(username = username)
-		u2 = UserDetails.objects.get(user = username )
-		education = Education.objects.get(user = username )
-		skills = Skills.objects.get(user = username )
-		projects = Projects.objects.get(user = username )
-		experience = Experience.objects.get(user = username )
-		achievements = Achievements.objects.get(user = username )
-		intrests = Intrests.objects.get(user = username )
-		print u1
-		print u2
-		# education.btechmarks
-		education.btechmarks = [ item.encode('ascii') for item in ast.literal_eval(education.btechmarks) ]
-		print education.btechmarks
-		for i in education.btechmarks:
-			print i
-		skills.skillsSet = [ item.encode('ascii') for item in ast.literal_eval(skills.skillsSet)]
-		projects.title = [ item.encode('ascii') for item in ast.literal_eval(projects.title)]
-		projects.description = [ item.encode('ascii') for item in ast.literal_eval(projects.description) ]
-		projects = zip(projects.title,projects.description)
-		experience.expDesc = [ item.encode('ascii') for item in ast.literal_eval(experience.expDesc)]
-		achievements.desc = [ item.encode('ascii') for item in ast.literal_eval(achievements.desc) ]
-		intrests.description = [ item.encode('ascii') for item in ast.literal_eval(intrests.description) ]
-		# prolen = len(projects.title)
-		return render_to_response("display.html",{'u1':request.user,'u2':u2,'education':education,'skills':skills,'projects':projects,'experience':experience,'achievements':achievements,'intrests':intrests},context_instance=RequestContext(request))
+		u2 = userDetails.objects.get(user = username )
+		u2.btechmarks = [ item.encode('ascii') for item in ast.literal_eval(u2.btechmarks) ]
+		u2.skillsSet = [ item.encode('ascii') for item in ast.literal_eval(u2.skillsSet)]
+		u2.projectTitle = [ item.encode('ascii') for item in ast.literal_eval(u2.projectTitle)]
+		u2.projectDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.projectDesc) ]
+		projects = zip(u2.projectTitle,u2.projectDesc)
+		u2.expDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.expDesc)]
+		u2.achieveDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.achieveDesc) ]
+		u2.interestDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.interestDesc) ]
+		return render_to_response("display.html",{'u1':request.user,'u2':u2,'projects':projects},context_instance=RequestContext(request))
 	except:
 		return HttpResponse("<h3>The User has not signed up yet</h3>")

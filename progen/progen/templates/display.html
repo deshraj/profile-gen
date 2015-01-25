@@ -53,28 +53,28 @@
 			<div class="col-sm-6">
 				<p><strong>10th Class</strong></p>
 				<div class="row">
-					<div class="col-xs-6"><p><strong>Score :</strong>{{ education.10thPercent }}</p></div>
-					<div class="col-xs-6"><p><strong>From :</strong>{{ education.10thSchool }}</p></div>
+					<div class="col-xs-6"><p><strong>Score :</strong>{{ u2.t10thPercent }}</p></div>
+					<div class="col-xs-6"><p><strong>From :</strong>{{ u2.t10thSchool }}</p></div>
 				</div>			
 			</div>
 			<div class="col-sm-6">
 				<p><strong>12th Class</strong></p>
 				<div class="row">
-					<div class="col-xs-6"><p><strong>Score :</strong>{{ education.12thPercent }}</p></div>
-					<div class="col-xs-6"><p><strong>From :</strong>{{ education.12thSchool }}</p></div>
+					<div class="col-xs-6"><p><strong>Score :</strong>{{ u2.t12thPercent }}</p></div>
+					<div class="col-xs-6"><p><strong>From :</strong>{{ u2.t12thSchool }}</p></div>
 				</div>
 			</div>
 			<div class="col-sm-12">
 				<p><strong>{{ u2.branch }}</strong></p>
 				<div class="row">
-					<div class="col-sm-3"><p><strong>1st Semester:    </strong>{{ education.btechmarks.0 }}%</p></div>
-					<div class="col-sm-3"><p><strong>2nd Semester:    </strong>{{ education.btechmarks.1 }}%</p></div>
-					<div class="col-sm-3"><p><strong>3rd Semester:    </strong>{{ education.btechmarks.2 }}%</p></div>
-					<div class="col-sm-3"><p><strong>4th Semester:    </strong>{{ education.btechmarks.3 }}%</p></div>
-					<div class="col-sm-3"><p><strong>5th Semester:    </strong>{{ education.btechmarks.4 }}%</p></div>
-					<div class="col-sm-3"><p><strong>6th Semester:    </strong>{{ education.btechmarks.5 }}%</p></div>
-					<div class="col-sm-3"><p><strong>7th Semester:    </strong>{{ education.btechmarks.6 }}%</p></div>
-					<div class="col-sm-3"><p><strong>8th Semester:    </strong>{{ education.btechmarks.7 }}%</p></div>
+					<div class="col-sm-3"><p><strong>1st Semester:    </strong>{{ u2.btechmarks.0 }}%</p></div>
+					<div class="col-sm-3"><p><strong>2nd Semester:    </strong>{{ u2.btechmarks.1 }}%</p></div>
+					<div class="col-sm-3"><p><strong>3rd Semester:    </strong>{{ u2.btechmarks.2 }}%</p></div>
+					<div class="col-sm-3"><p><strong>4th Semester:    </strong>{{ u2.btechmarks.3 }}%</p></div>
+					<div class="col-sm-3"><p><strong>5th Semester:    </strong>{{ u2.btechmarks.4 }}%</p></div>
+					<div class="col-sm-3"><p><strong>6th Semester:    </strong>{{ u2.btechmarks.5 }}%</p></div>
+					<div class="col-sm-3"><p><strong>7th Semester:    </strong>{{ u2.btechmarks.6 }}%</p></div>
+					<div class="col-sm-3"><p><strong>8th Semester:    </strong>{{ u2.btechmarks.7 }}%</p></div>
 				</div>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 				<h1>Skills</h1>
 			<div class="col-sm-12" style="padding-left:0">
 				<ul class="skills">
-				{% for i in skills.skillsSet %}
+				{% for i in u2.skillsSet %}
 					<li>{{ i }}</li>
 				{% endfor %}
 				</ul>
@@ -107,7 +107,7 @@
 			</div>
 			<div class="col-sm-12">
 				<ul>
-				{% for i in experience.expDesc %}
+				{% for i in u2.expDesc %}
 					<li>{{ i }}</li>
 				{% endfor %}
 				</ul>
@@ -119,7 +119,7 @@
 			</div>
 			<div class="col-sm-12">
 				<ul class="intrests">
-				{% for i in intrests.description %}
+				{% for i in u2.interestDesc %}
 					<li>{{ i }}</li>
 				{% endfor %}
 				</ul>
@@ -131,7 +131,7 @@
 			</div>
 			<div class="col-sm-12">
 				<ul>
-				{% for i in achievements.desc %}
+				{% for i in u2.achieveDesc %}
 					<li>{{ i }}</li>
 				{% endfor %}
 				</ul>
