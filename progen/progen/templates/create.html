@@ -8,6 +8,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="static/css/create.css">
 	<style>
+		div.form-group{overflow:hidden;}
 	</style>
 </head>
 <body>
@@ -53,7 +54,7 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="phnum">Phone number</label>
-						<input type="number" min='10' max='10' name="phnum" id="phnum" class="form-control" placeholder="Contact number">
+						<input type="number" maxlength='10' name="phnum" id="phnum" class="form-control" placeholder="Contact number">
 					</div>
 				</div>
 			</div>
@@ -159,8 +160,9 @@
 			<div class="row infoContainer">
 				<div class="col-sm-12">
 					<h1>Skills</h1>
-					<div class="form-group" style="max-width:400px">
+					<div class="form-group" style="max-width:400px;">
 						<input type="text" name="skills" class="form-control" placeholder="Skill">
+						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More Skills</a>
@@ -176,6 +178,7 @@
 						<label for="title">Project Name</label>
 						<input type="text" name="projectName" id="title" class="form-control" placeholder="Project Name" style="margin-bottom:5px">
 						<textarea name="projectDescription" style="resize:none" class="form-control" placeholder="description"></textarea>
+						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More Projects</a>
@@ -189,6 +192,7 @@
 				<div class="col-sm-12">
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="EOrI" placeholder="Experience/Interns">
+						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
@@ -202,6 +206,7 @@
 				<div class="col-sm-12">
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="intrests" placeholder="Intrests">
+						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
@@ -215,6 +220,7 @@
 				<div class="col-sm-12">
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="achievements" placeholder="Achievements">
+						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
@@ -239,7 +245,11 @@
 	$(document).on('click','.add',function(){
 		elem = $(this).parent().prev().clone();
 		elem.find('input').val('');
+		elem.find('a.remove').removeClass('disabled');
 		elem.insertBefore($(this).parent()).hide().fadeIn();
+	});
+	$(document).on('click','.remove',function(){
+		$(this).parent().fadeOut('normal',function(){$(this).remove();});
 	});
 	</script>
 </html>
