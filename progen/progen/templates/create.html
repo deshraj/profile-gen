@@ -24,6 +24,7 @@
 				<ul class="links">
 						<li style="color:white;">Welcome {{ user.first_name }} {{ user.last_name }}</li>
 						<li><a href="/logout">Logout</a></li>
+						<li><a href="javascript:" class="changePassword">Change Password</a></li>
 				</ul>
 			</div>
 		</div>
@@ -282,6 +283,29 @@
 			</div>
 		</form>
 	</section>
+  <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form action="" onsubmit="return false;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<p><strong>Email : </strong> example@examle.com</p>
+            <div class="form-group">
+              <label for="pssw">Password</label>
+              <input type="password" class="form-control" name="pssw" id="pssw" required>
+            </div>
+            <div class="form-group">
+              <label for="rpssw">Retype Password</label>
+              <input type="password" class="form-control" name="rpssw" id="rpssw" required>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Change password">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 	<footer class="container-fluid text-center">
 		<a href="javascript:">About Us</a>
 	</footer>
@@ -297,6 +321,9 @@
 	});
 	$(document).on('click','.remove',function(){
 		$(this).parent().fadeOut('normal',function(){$(this).remove();});
+	});
+	$(document).on('click','.changePassword',function(){
+		$('#changePasswordModal').modal('show');
 	});
 	</script>
 </html>

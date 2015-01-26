@@ -25,7 +25,7 @@ ul{
     margin:0;
 }
 body{
-    background:#ccc;
+    background:#7F8C8D;
 }
 header .links{
     list-style:none;
@@ -37,12 +37,8 @@ header .links{
 header .links li{
     display:inline-block;
 }
-header .links li:last-child{
-    border-left:1px solid white;
-}
 header .links li a,header .links li a:hover,header .links li a:focus{
     color:white;
-    font-size:1.2em;
     padding:2px 6px;
 }
 header h1{
@@ -105,6 +101,9 @@ footer a,footer a:hover,footer a:focus{
     color:white;
     letter-spacing: 1px;
     padding:8px;
+}
+textarea.form-control{
+    height:110px;
 }
 @media(max-width:768px){
     header h1{
