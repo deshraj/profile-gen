@@ -129,7 +129,7 @@ def newProfile(request):
 		intrests = request.POST.getlist('intrests')
 		achievements = request.POST.getlist('achievements')
 
-		a = userDetails.objects.create(user = username,branch = branch, phno = phnum, t10thPercent=_10thScore, t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, interestDesc = intrests, achieveDesc = achievements)
+		a = userDetails.objects.create(user = username,branch = branch, phno = phnum, url = url,t10thPercent=_10thScore, t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, interestDesc = intrests, achieveDesc = achievements)
 		a.save()
 		return	HttpResponseRedirect("/profile")
 
@@ -155,7 +155,7 @@ def updateProfile(request):
 		intrests = request.POST.getlist('intrests')
 		achievements = request.POST.getlist('achievements')
 		username = request.user.username
-		userDetails.objects.filter(user = username ).update(branch = branch, phno = phnum, t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, achieveDesc = achievements, interestDesc = intrests)
+		userDetails.objects.filter(user = username ).update(branch = branch, phno = phnum, url = url,t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, achieveDesc = achievements, interestDesc = intrests)
 		return HttpResponseRedirect("/profile")
 
 def display(request,username=None):
