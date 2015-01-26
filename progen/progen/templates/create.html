@@ -161,10 +161,17 @@
 				<div class="col-sm-12">
 					<h1>Skills</h1>
 					{% for i in u2.skillsSet %}
+					{% ifequal i u2.skillsSet.0 %}
 					<div class="form-group" style="max-width:400px;">
 						<input type="text" name="skills" class="form-control" placeholder="Skill" value="{{ i }}">
 						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
+					{% else %}
+						<div class="form-group" style="max-width:400px;">
+						<input type="text" name="skills" class="form-control" placeholder="Skill" value="{{ i }}">
+						<a href="javascript:" class="btn btn-primary remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+					{% endifequal %}
 					{% endfor %}
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More Skills</a>
@@ -177,12 +184,21 @@
 				</div>
 				<div class="col-sm-6">
 					{% for i,j in projects %}
+					{% ifequal i projects.0 %}
 					<div class="form-group" style="max-width:400px">
 						<label for="title">Project Name</label>
 						<input type="text" name="projectName" id="title" class="form-control" placeholder="Project Name" style="margin-bottom:5px" value="{{ i }}">
 						<textarea name="projectDescription" style="resize:none" class="form-control" placeholder="description">{{ j }}</textarea >
 						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
+					{% else %}
+					<div class="form-group" style="max-width:400px">
+						<label for="title">Project Name</label>
+						<input type="text" name="projectName" id="title" class="form-control" placeholder="Project Name" style="margin-bottom:5px" value="{{ i }}">
+						<textarea name="projectDescription" style="resize:none" class="form-control" placeholder="description">{{ j }}</textarea >
+						<a href="javascript:" class="btn btn-primary remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+					{% endifequal %}
 					{% endfor %}
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More Projects</a>
@@ -195,11 +211,18 @@
 				</div>
 				<div class="col-sm-12">
 				{% for i in u2.expDesc %}
+				{% ifequal i u2.expDesc.0%}
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="EOrI" placeholder="Experience/Interns" value="{{ i }}">
 						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
-					{% endfor %}
+				{% else %}
+				<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="EOrI" placeholder="Experience/Interns" value="{{ i }}">
+						<a href="javascript:" class="btn btn-primary remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>	
+				{% endifequal %}
+				{% endfor %}
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
 					</div>
@@ -211,11 +234,18 @@
 				</div>
 				<div class="col-sm-12">
 				{% for i in u2.interestDesc %}
+				{% ifequal i u2.interestDesc %}
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="intrests" placeholder="Intrests" value="{{ i }}">
 						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
-					{% endfor %}
+				{% else %}
+					<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="intrests" placeholder="Intrests" value="{{ i }}">
+						<a href="javascript:" class="btn btn-primary remove" title="Remove" style="float:right;"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+				{% endifequal %}
+				{% endfor %}
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
 					</div>
@@ -227,11 +257,18 @@
 				</div>
 				<div class="col-sm-12">
 				{% for i in u2.achieveDesc %}
+				{% ifequal i u2.achieveDesc.0 %}
 					<div class="form-group" style="max-width:400px">
 						<input type="text" class="form-control" name="achievements" placeholder="Achievements" value="{{ i }}">
 						<a href="javascript:" class="btn btn-primary disabled remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
 					</div>
-					{% endfor %}
+				{% else %}
+					<div class="form-group" style="max-width:400px">
+						<input type="text" class="form-control" name="achievements" placeholder="Achievements" value="{{ i }}">
+						<a href="javascript:" class="btn btn-primary remove" title="Remove" style="float:right"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+				{% endifequal %}
+				{% endfor %}
 					<div class="form-group">
 						<a href="javascript:" class="btn btn-primary add">Add More</a>
 					</div>
