@@ -30,6 +30,10 @@ header .links{
     float:right;
     margin-top:37px;
 }
+.form-control,.form-control:focus{
+    border-radius: 0;
+    box-shadow: none;
+}
 header .links li{
     display:inline-block;
 }
