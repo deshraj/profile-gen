@@ -39,12 +39,16 @@
     body{
       background:#ccc;
     }
+    .forgotPassword,.forgotPassword:focus,.forgotPassword:hover{
+      font-size:.9em;
+      color:inherit;
+    }
   </style>
 </head>
 <body>
   <section class="container-fluid">
     <div class="loginContainer">
-      <h1 class="text-center">Login to edit</h1>
+      <h1 class="text-center">Login</h1>
       <form role="form" method="post" action="">
         {% csrf_token %}
         <div class="form-group">
@@ -53,7 +57,8 @@
         </div>
         <div class="form-group">
           <label class="control-label" for="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
+          <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required>
+          <p class="help-block text-right"><a href="javascript:" class="forgotPassword">Forgot password ?</a></p>
         </div>
         <div class="form-group">
           <input type="submit" class="btn btn-primary" value="Login">
@@ -62,5 +67,30 @@
       <p class="text-center">Not a member yet. You can <a href="/register">Signup</a> here</p>
     </div>        
   </section>
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form action="" onsubmit="return false;">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email Id" required>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Retrive password">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script>
+  $(document).on('click','.forgotPassword',function(){
+    $('#forgotPasswordModal').modal('show');
+  });
+</script>
 </html>
