@@ -47,13 +47,13 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="url">Website Url</label>
-						<input type="url" name="url" id="url" class="form-control" placeholder="URL" >
+						<input type="url" name="url" id="url" class="form-control" placeholder="URL" value = "{{ u2.url }}" >
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="phnum">Phone number</label>
-						<input type="number" min='10' max='10' name="phnum" id="phnum" class="form-control" placeholder="Contact number">
+						<input type="number" min='10' max='10' name="phnum" id="phnum" class="form-control" placeholder="Contact number" value="{{ u2.phno }}">
 					</div>
 				</div>
 			</div>
@@ -67,13 +67,13 @@
 						<div class="col-xs-6">
 							<div class="form-group">
 								<label for="10thScore">Score</label>
-								<input type="number" class="form-control" id="10thScore" name="10thScore">
+								<input type="number" class="form-control" id="10thScore" name="10thScore" value="{{ u2.t10thPercent }}">
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<div class="form-group">
 								<label for="10thFrom">From</label>
-								<input type="text" class="form-control" id="10thFrom" name="10thFrom">
+								<input type="text" class="form-control" id="10thFrom" name="10thFrom" value="{{ u2.t10thSchool }}">
 							</div>
 						</div>
 					</div>			
@@ -84,13 +84,13 @@
 						<div class="col-xs-6">
 							<div class="form-group">
 								<label for="12thScore">Score</label>
-								<input type="number" class="form-control" id="12thScore" name="12thScore">
+								<input type="number" class="form-control" id="12thScore" name="12thScore" value="{{ u2.t12thPercent }}">
 							</div>
 						</div>
 						<div class="col-xs-6">
 							<div class="form-group">
 								<label for="12thFrom">From</label>
-								<input type="text" class="form-control" id="12thFrom" name="12thFrom">
+								<input type="text" class="form-control" id="12thFrom" name="12thFrom" value="{{ u2.t12thSchool }}">
 							</div>
 						</div>
 					</div>

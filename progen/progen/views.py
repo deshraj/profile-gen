@@ -83,7 +83,7 @@ def profile(request):
 	userr = request.user.username	
 	if request.user.is_authenticated() :
 		try:
-			UserDetails.objects.get(user= userr )
+			u2 = userDetails.objects.get(user= userr )
 			new = 0
 		except: 
 			new = 1
@@ -92,7 +92,18 @@ def profile(request):
 		else:
 			#write the queries for updating the user 
 			updateProfile(request)
-		return	render_to_response("create.html",{'user':request.user},context_instance=RequestContext(request))
+		if new==1:
+			return	render_to_response("create.html",{'user':request.user},context_instance=RequestContext(request))
+		else:
+			u2.btechmarks = [ item.encode('ascii') for item in ast.literal_eval(u2.btechmarks) ]
+			u2.skillsSet = [ item.encode('ascii') for item in ast.literal_eval(u2.skillsSet)]
+			u2.projectTitle = [ item.encode('ascii') for item in ast.literal_eval(u2.projectTitle)]
+			u2.projectDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.projectDesc) ]
+			projects = zip(u2.projectTitle,u2.projectDesc)
+			u2.expDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.expDesc)]
+			u2.achieveDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.achieveDesc) ]
+			u2.interestDesc = [ item.encode('ascii') for item in ast.literal_eval(u2.interestDesc) ]
+			return render_to_response("create.html",{'user':request.user,'projects':projects,'u2':u2},context_instance=RequestContext(request))
 	else:
 		return redirect('/login/?next=%s' % request.path)
 
@@ -120,6 +131,7 @@ def newProfile(request):
 
 		a = userDetails.objects.create(user = username,branch = branch, phno = phnum, t10thPercent=_10thScore, t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, interestDesc = intrests, achieveDesc = achievements)
 		a.save()
+		return	HttpResponseRedirect("/profile")
 
 def updateProfile(request):
 	print "######################## THE USER IS GOING TO UPDATE THE PROFILE ###########################"
@@ -144,6 +156,7 @@ def updateProfile(request):
 		achievements = request.POST.getlist('achievements')
 		username = request.user.username
 		userDetails.objects.filter(user = username ).update(branch = branch, phno = phnum, t10thPercent=_10thScore,t12thPercent=str(_12thScore),t10thSchool = _10thFrom,t12thSchool = _12thFrom,btechmarks = semMarks, skillsSet = skillss,projectTitle = projectName, projectDesc = projectDescription, expDesc = EOrI, achieveDesc = achievements, interestDesc = intrests)
+		return HttpResponseRedirect("/profile")
 
 def display(request,username=None):
 	try:
