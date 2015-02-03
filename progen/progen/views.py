@@ -18,12 +18,11 @@ from progen.models import *
 from datetime import datetime,timedelta
 import random,string,ast
 def home(request):
-	# if request.user.is_authenticated():
-	# 	return HttpResponseRedirect("/profile")
-	# else:
+	"""this view is for the home page display"""
 	return render_to_response("index.html",context_instance=RequestContext(request))
 
 def signup(request):
+	"""signup for the user """
 	if not request.user.is_active:
 		if request.POST:
 			print "entered the if sectison"
@@ -45,6 +44,7 @@ def signup(request):
 		return HttpResponseRedirect("/")	
 
 def login(request):
+	""" Login view """
 	if not request.user.is_authenticated():
 		if request.POST:
 			username = request.POST['username']
@@ -63,6 +63,7 @@ def login(request):
 		return HttpResponseRedirect("/profile")
 
 def changepassword(request):
+	""" user password change view """
 	if user.is_authenticated:
 		if request.POST:
 			username = user.username
@@ -75,11 +76,13 @@ def changepassword(request):
 
 # donot delete this function as it may be used in future for the purpose of logout to a specific page
 # def logout_view(request):
+	"""logout view """
 # 	logout(request)
 # 	# return HttpResponseRedirect("/")
 # 	return render_to_response("index.html",{'logout':1},context_instance=RequestContext(request))
 
 def profile(request):
+	""" profile editing view. User can update their profile using this view. """
 	userr = request.user.username	
 	if request.user.is_authenticated() :
 		try:
@@ -90,7 +93,6 @@ def profile(request):
 		if new==1:
 			newProfile(request)
 		else:
-			#write the queries for updating the user 
 			updateProfile(request)
 		if new==1:
 			return	render_to_response("create.html",{'user':request.user},context_instance=RequestContext(request))
@@ -108,7 +110,7 @@ def profile(request):
 		return redirect('/login/?next=%s' % request.path)
 
 def newProfile(request):
-	print "$$$$$$$$$$$$$$$$$$$$$$$$$$$ THE USER IS GOING TO CREATE THE PROFILE $$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+	""" View for creating new profile of a user """
 	if request.POST:
 		print "CAUGHT THE POST REQUEST"
 		username = request.user.username
@@ -134,7 +136,7 @@ def newProfile(request):
 		return	HttpResponseRedirect("/profile")
 
 def updateProfile(request):
-	print "######################## THE USER IS GOING TO UPDATE THE PROFILE ###########################"
+	""" View for updating the user profile """
 	if request.POST:
 		print "CAUGHT THE POST REQUEST"
 		username = request.user.username
@@ -159,6 +161,7 @@ def updateProfile(request):
 		return HttpResponseRedirect("/profile")
 
 def display(request,username=None):
+	""" View for displaying the user profile """
 	try:
 		username = str(request.path[1:])
 		u1 = User.objects.get(username = username)
